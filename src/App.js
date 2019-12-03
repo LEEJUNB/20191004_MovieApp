@@ -9,27 +9,25 @@ function Food({name, picture}) { // Components는 대문자 이기에 Func. fav�
 
 // 데이터가 이미 API를 통해서 받은 경우를 위해 함수를 만든다.
 // Food object의 배열이 되는 함수
+// 1. react에서 element들은 유일해야 하기에, 그 유일성을 위해 각 엘리먼트마다 id를 부여한다.
 const foodILike = [
   {
+    id : 1,
     title : "Kim",
     image : "https://www.etonline.com/sites/default/files/styles/max_970x546/public/images/2019-09/kim-kardashian-west-emmys-2019-1280.jpg?itok=vAGBUUzi&h=000b89ad"
   },
   {
+    id : 2,
     title : "KimChi",
     imgage : "https://www.maangchi.com/wp-content/uploads/2014/06/whole-cabbage-kimchi.jpg"
   },
   {
+    id : 3,
     title : "MulKimChi",
     imgage : "http://www.trifood.com/image/food/mulkimchi.jpg"
   }
 
 ];
-
-// 1. renderFood를 만들자
-function renderFood(dish) {
-  console.log(dish);
-  return <Food name={dish.name} picture={dish.picture}/>
-}
 
 
 // Food와 foodILike를 렌더링해보자. JS의 map을 이용해서. 
@@ -38,7 +36,9 @@ function renderFood(dish) {
 function App() {
   return (
     <div>
-      {foodILike.map(renderFood)}
+      {foodILike.map(dish => (
+        <Food key={dish.id} name={dish.title} picture={dish.image}/>
+      ))}
     </div>
   );
 }
