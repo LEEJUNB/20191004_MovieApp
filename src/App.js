@@ -7,8 +7,8 @@ function Food({name, picture}) { // Components는 대문자 이기에 Func. fav�
   </div>
 }
 
-// 1. 데이터가 이미 API를 통해서 받은 경우를 위해 함수를 만든다.
-// 2. Food object의 배열이 되는 함수
+// 데이터가 이미 API를 통해서 받은 경우를 위해 함수를 만든다.
+// Food object의 배열이 되는 함수
 const foodILike = [
   {
     title : "Kim",
@@ -25,17 +25,20 @@ const foodILike = [
 
 ];
 
-// 3. Food와 foodILike를 렌더링해보자. JS의 map을 이용해서. 
-// 4. map은 arr의 각 item에서 func을 실행하는 arr을 가지는 js func이며 그 func의 res를 갖는 arr을 준다.
+// 1. renderFood를 만들자
+function renderFood(dish) {
+  console.log(dish);
+  return <Food name={dish.name} picture={dish.picture}/>
+}
+
+
+// Food와 foodILike를 렌더링해보자. JS의 map을 이용해서. 
+// map은 arr의 각 item에서 func을 실행하는 arr을 가지는 js func이며 그 func의 res를 갖는 arr을 준다.
 // 예를들어 배열함수.map(function(obj){return obj}) 라고하면 배열함수에 있는 배열 하나하나 모두에 function을 적용시켜서 불러온다.
 function App() {
   return (
-    <div className="App">
-      <h1>testing server</h1>
-      {/* dish는 object이다. object에는 name과 image가 존재. 고로 dish는 첫번째로 Kim object 그리고 KimChi object... 순이다 */}
-      {foodILike.map(dish => (
-        <Food name={dish.title} picture={dish.image}/>
-        ))}  
+    <div>
+      {foodILike.map(renderFood)}
     </div>
   );
 }
